@@ -1,0 +1,19 @@
+import json
+import csv
+
+# Mở file JSON và đọc dữ liệu
+with open('result.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+# Lọc và lưu dữ liệu vào file CSV
+with open('filtered_data.csv', 'w', encoding='utf-8', newline='') as f:
+    writer = csv.writer(f)
+
+    # Viết tiêu đề cho file CSV
+    writer.writerow(['message_text'])
+
+    # Lấy nội dung của text trong messages
+    for message in data['messages']:
+        if message["type"] != "bot_command":
+            message_text = message["text"]
+            writer.writerow([message_text])
