@@ -1,0 +1,23 @@
+from telethon import TelegramClient, events, sync
+
+# Enter your own values for these variables
+api_id = YOUR_API_ID
+api_hash = 'YOUR_API_HASH'
+phone_number = 'YOUR_PHONE_NUMBER'
+group_username = 'GROUP_USERNAME'
+
+client = TelegramClient(phone_number, api_id, api_hash)
+
+# Connect to the Telegram server
+client.connect()
+
+# Find the group you want to send a message to
+# You can use either the group username or the group ID
+group = client.get_entity(group_username)
+
+# Send the message to the group
+message = 'Hello from Telethon!'
+client.send_message(group, message)
+
+# Disconnect from the Telegram server
+client.disconnect()
